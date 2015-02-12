@@ -1,16 +1,11 @@
-﻿using System;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.App;
 using Android.OS;
+using Android.Widget;
+using Codeplex.Reactive.Extensions;
 using ReactiveProperty.Android.Test.ViewModels;
 using ReactiveProperty.XamarinAndroid;
 using ReactiveProperty.XamarinAndroid.Extensions;
-using Codeplex.Reactive.Extensions;
-using Codeplex.Reactive.Binding;
-using Codeplex.Reactive;
+using System;
 
 namespace ReactiveProperty.Android.Test.Views
 {
@@ -37,6 +32,7 @@ namespace ReactiveProperty.Android.Test.Views
                 (TextView x) => x.Text,
                 vm.Output);
 
+            // コマンドとイベントの紐づけ思案中
             this.FindViewById<Button>(Resource.Id.ButtonClear)
                 .ClickAsObservable()
                 .Subscribe(_ => this.vm.ClearCommand.Execute());
