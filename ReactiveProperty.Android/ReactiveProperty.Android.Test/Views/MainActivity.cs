@@ -23,14 +23,16 @@ namespace ReactiveProperty.Android.Test.Views
             SetContentView(Resource.Layout.Main);
 
             // twoway
-            this.SetBinding(Resource.Id.EditTextInput,
-                (EditText x) => x.Text,
-                vm.Input,
-                (EditText x) => x.TextChangedAsObservable().ToUnit());
+            this.FindViewById<EditText>(Resource.Id.EditTextInput)
+                .SetBinding(
+                    x => x.Text,
+                    this.vm.Input,
+                    x => x.TextChangedAsObservable().ToUnit());
             // oneway
-            this.SetBinding(Resource.Id.TextViewOutput,
-                (TextView x) => x.Text,
-                vm.Output);
+            this.FindViewById<TextView>(Resource.Id.TextViewOutput)
+                .SetBinding(
+                    x => x.Text,
+                    this.vm.Output);
 
             // コマンドとイベントの紐づけ思案中
             this.FindViewById<Button>(Resource.Id.ButtonClear)

@@ -22,70 +22,29 @@ namespace ReactiveProperty.XamarinAndroid
     public static class BindingSupportExtensions
     {
         public static IDisposable SetBinding<TView, TProperty>(
-            this Activity self,
-            int id,
+            this TView self,
             Expression<Func<TView, TProperty>> propertySelector,
             ReactiveProperty<TProperty> source, Func<TView, IObservable<Unit>> updateSourceTrigger = null)
             where TView : View
         {
-            var view = self.FindViewById<TView>(id);
-            string propertyName;
-            var getter = AccessorCache<TView>.LookupGet(propertySelector, out propertyName);
-            var setter = AccessorCache<TView>.LookupSet(propertySelector, out propertyName);
-
             var d = new CompositeDisposable();
 
             bool isUpdating = false;
+            string propertyName;
+            var setter = AccessorCache<TView>.LookupSet(propertySelector, out propertyName);
             source
                 .Where(_ => !isUpdating)
-                .Subscribe(x => setter(view, x))
+                .Subscribe(x => setter(self, x))
                 .AddTo(d);
             if (updateSourceTrigger != null)
             {
-                updateSourceTrigger(view).Subscribe(_ =>
+                var getter = AccessorCache<TView>.LookupGet(propertySelector, out propertyName);
+                updateSourceTrigger(self).Subscribe(_ =>
                 {
                     isUpdating = true;
                     try
                     {
-                        source.Value = getter(view);
-                    }
-                    finally
-                    {
-                        isUpdating = false;
-                    }
-                }).AddTo(d);
-            }
-
-            return d;
-        }
-
-        public static IDisposable SetBinding<TView, TProperty>(
-            this View self,
-            int id,
-            Expression<Func<TView, TProperty>> propertySelector,
-            ReactiveProperty<TProperty> source, Func<TView, IObservable<Unit>> updateSourceTrigger = null)
-            where TView : View
-        {
-            var view = self.FindViewById<TView>(id);
-            string propertyName;
-            var getter = AccessorCache<TView>.LookupGet(propertySelector, out propertyName);
-            var setter = AccessorCache<TView>.LookupSet(propertySelector, out propertyName);
-
-            var d = new CompositeDisposable();
-
-            bool isUpdating = false;
-            source
-                .Where(_ => !isUpdating)
-                .Subscribe(x => setter(view, x))
-                .AddTo(d);
-            if (updateSourceTrigger != null)
-            {
-                updateSourceTrigger(view).Subscribe(_ =>
-                {
-                    isUpdating = true;
-                    try
-                    {
-                        source.Value = getter(view);
+                        source.Value = getter(self);
                     }
                     finally
                     {
