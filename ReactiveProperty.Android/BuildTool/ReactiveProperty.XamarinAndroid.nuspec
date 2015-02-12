@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ReactiveProperty.XamarinAndroid</id>
+    <version>0.0.2</version>
+    <title>ReactiveProperty.XamarinAndroid</title>
+    <authors>okazuki</authors>
+    <owners>okazuki</owners>
+    <licenseUrl>https://github.com/runceel/ReactiveProperty.Android/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/runceel/ReactiveProperty.Android</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ReactiveProperty.XamarinAndroid is support library for Xamarin.Android development. Event to IObservable extensions method and data binding method.</description>
+    <summary />
+    <language>en-US</language>
+    <tags>xamarin android rx-main reactiveproperty</tags>
+    <dependencies>
+      <dependency id="ReactiveProperty" version="1.1.2" />
+    </dependencies>
+    <frameworkAssemblies>
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <!-- Mono.Android -->
+    <file src="..\bin\Release\ReactiveProperty.XamarinAndroid.dll" target="lib\MonoAndroid" />
+  </files>
+</package>

@@ -96,5 +96,20 @@ namespace ReactiveProperty.XamarinAndroid
 
             return d;
         }
+
+        public static IDisposable SetCommand<T>(this IObservable<T> self, ReactiveCommand<T> command)
+        {
+            return self
+                .Where(_ => command.CanExecute())
+                .Subscribe(x => command.Execute(x));
+        }
+
+        public static IDisposable SetCommand<T>(this IObservable<T> self, ReactiveCommand command)
+        {
+            return self
+                .Where(_ => command.CanExecute())
+                .Subscribe(x => command.Execute());
+        }
+
     }
 }
