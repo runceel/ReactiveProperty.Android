@@ -48,17 +48,14 @@ namespace Generator
                     }
                     else
                     {
-                        if (eventArgsType.IsPublic)
-                        {
-                            var eventArgsName = eventArgsType.FullName.Replace('+', '.');
-                            sb.AppendLine("public static IObservable<" + eventArgsName + "> " + eventName + "AsObservable(this " + typeName + " self)");
-                            sb.AppendLine("{");
-                            sb.AppendLine("    return Observable.FromEvent<EventHandler<" + eventArgsName + ">, " + eventArgsName + ">(");
-                            sb.AppendLine("        h => (s, e) => h(e),");
-                            sb.AppendLine("        h => self." + eventName + " += h,");
-                            sb.AppendLine("        h => self." + eventName + " -= h);");
-                            sb.AppendLine("}");
-                        }
+                        var eventArgsName = eventArgsType.FullName.Replace('+', '.');
+                        sb.AppendLine("public static IObservable<" + eventArgsName + "> " + eventName + "AsObservable(this " + typeName + " self)");
+                        sb.AppendLine("{");
+                        sb.AppendLine("    return Observable.FromEvent<EventHandler<" + eventArgsName + ">, " + eventArgsName + ">(");
+                        sb.AppendLine("        h => (s, e) => h(e),");
+                        sb.AppendLine("        h => self." + eventName + " += h,");
+                        sb.AppendLine("        h => self." + eventName + " -= h);");
+                        sb.AppendLine("}");
                     }
                 }
             }
