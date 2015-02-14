@@ -6,7 +6,7 @@ ReactiveProperty.XamarinAndroid is MVVM support library for ReactiveProperty + X
 
 # Install
 
-Install NuGet.
+Install [NuGet](http://www.nuget.org/packages/ReactiveProperty.XamarinAndroid/).
 ```
 Install-Package ReactiveProperty.XamarinAndroid
 ```
