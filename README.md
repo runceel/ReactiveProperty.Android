@@ -73,3 +73,7 @@ this.FindViewById<ListView>(Resource.Id.ListView)
 
 ### many many many... extension methods
 [here](https://github.com/runceel/ReactiveProperty.Android/blob/master/ReactiveProperty.Android/ReactiveProperty.Android/Extensions/ViewEventExtensions.cs)
+
+# Sample apps
+
+- [MasterDetail app](https://code.msdn.microsoft.com/Simple-detail-application-1a3a180e)
