@@ -4,6 +4,13 @@ ReactiveProperty.XamarinAndroid is MVVM support library for ReactiveProperty + X
 - ReactiveProperty is [here](https://github.com/runceel/ReactiveProperty).
 - Xamarin is [here](https://xamarin.com/).
 
+# Install
+
+Install NuGet.
+```
+Install-Package ReactiveProperty.XamarinAndroid
+```
+
 # Features
 
 - OneWay and TwoWay databinding, between View's property and ReactiveProperty.
